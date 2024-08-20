@@ -2,6 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import getStripe from "./utils/get-stripe";
+
+import { Analytics } from '@vercel/analytics/react';
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   AppBar,
