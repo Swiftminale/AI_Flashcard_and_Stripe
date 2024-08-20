@@ -14,15 +14,15 @@ export default function SignUpPage() {
     <Container maxWidth="100vw">
       <AppBar position="static" sx={{ backgroundColor: "#3f51b5" }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Flashcard SaaS
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+            አጤረራ
           </Typography>
-          <Button color="inherit">
+          <Button sx={{ bgcolor: "white", mr: 2 }} variant="outline">
             <Link href="/sign-in" passHref>
               Login
             </Link>
           </Button>
-          <Button color="inherit">
+          <Button sx={{ bgcolor: "white" }} variant="outline">
             <Link href="/sign-up" passHref>
               Sign Up
             </Link>

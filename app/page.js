@@ -70,10 +70,14 @@ export default function Home() {
           </Typography>
           <SignedOut>
             <Link href="/sign-in" passHref>
-              <Button color="inherit">Login</Button>
+              <Button sx={{ bgcolor: "white", mr: 2 }} variant="outline">
+                Login
+              </Button>
             </Link>
             <Link href="/sign-up" passHref>
-              <Button color="inherit">Sign Up</Button>
+              <Button sx={{ bgcolor: "white" }} variant="outline">
+                Sign Up
+              </Button>
             </Link>
           </SignedOut>
           <SignedIn>
