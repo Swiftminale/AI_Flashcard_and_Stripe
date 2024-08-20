@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import getStripe from "./utils/get-stripe";
-import 'ldrs/ring'
-import { helix } from "ldrs";
-import { Analytics } from '@vercel/analytics/react';
+import "ldrs/ring";
+import { grid, helix } from "ldrs";
+import { Analytics } from "@vercel/analytics/react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   AppBar,
@@ -16,10 +15,20 @@ import {
   Button,
   Paper,
 } from "@mui/material";
+import "ldrs/grid";
 import Head from "next/head";
+import React, { useState } from "react";
+
+grid.register();
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const handleSubmit = async () => {
+    setLoading(true); // Show loading spinner
+
     const checkoutSession = await fetch("./api/checkout_session", {
       method: "POST",
       headers: {
@@ -31,6 +40,8 @@ export default function Home() {
 
     if (checkoutSession.statusCode === 500) {
       console.error(checkoutSession.message);
+      await delay(5000); // Ensure spinner shows for at least 5 seconds
+      setLoading(false); // Hide loading spinner
       return;
     }
 
@@ -38,10 +49,13 @@ export default function Home() {
     const { error } = await stripe.redirectToCheckout({
       sessionId: checkoutSessionJson.id,
     });
+
+    await delay(5000); // Ensure spinner shows for at least 5 seconds
+    setLoading(false); // Hide loading spinner
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="100vw">
       <Head>
         <title>Flashcard SaaS</title>
         <meta
@@ -92,6 +106,11 @@ export default function Home() {
             Flashcards
           </Button>
         </Link>
+        {loading && (
+          <Box sx={{ mt: 4 }}>
+            <l-grid size="45" speed="2.5" color="black"></l-grid>
+          </Box>
+        )}
       </Paper>
       <Box sx={{ my: 6 }}>
         <Typography
