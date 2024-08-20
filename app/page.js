@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import getStripe from "./utils/get-stripe";
-
+import 'ldrs/ring'
+import { helix } from "ldrs";
 import { Analytics } from '@vercel/analytics/react';
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
